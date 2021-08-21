@@ -1,19 +1,215 @@
-[gd_scene format=2]
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Resources/Font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Resources/Normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/TitleScene.gd" type="Script" id=3]
+[ext_resource path="res://Resources/Hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://Assets/496_192.png" type="Texture" id=5]
+[ext_resource path="res://Assets/SFX/phaseJump3.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/background.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Kenney Mini.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.154362, 0.33557, 0.503356, 0.684564, 0.838926 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.632813, 0, 1, 0.289063, 1, 0, 1, 0, 0.267761, 0.835938, 1, 0.835938, 0, 0.822876, 1, 1, 0, 0, 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 4.0
+loop = true
+step = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -5.0, 5.0 ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.2 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1.2 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=6]
+size = 10
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+use_mipmaps = true
+font_data = ExtResource( 8 )
 
 [node name="TitleScene" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 168, 96 )
+texture = ExtResource( 7 )
+
+[node name="BackgroundParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 160, 96 )
+emitting = false
+amount = 64
+lifetime = 4.0
+texture = ExtResource( 5 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 250.0
+scale_amount = 0.3
+scale_amount_random = 0.4
+color_ramp = SubResource( 1 )
+
+[node name="PhaseJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[node name="V" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -84.0
+margin_top = -56.0
+margin_right = 84.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 168, 112 )
+custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 336.0
-margin_bottom = 14.0
+[node name="Title" type="Label" parent="V"]
+margin_right = 168.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 84, 10 )
+custom_fonts/font = ExtResource( 1 )
+text = "Matchy Planets"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="V/Title"]
+autoplay = "Rotate"
+anims/Rotate = SubResource( 2 )
+
+[node name="Label" type="Label" parent="V"]
+margin_top = 35.0
+margin_right = 168.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 3 )
+text = "Highscore:"
+align = 1
+
+[node name="Buttons" type="VBoxContainer" parent="V"]
+margin_top = 65.0
+margin_right = 168.0
+margin_bottom = 119.0
+custom_constants/separation = 2
+
+[node name="PlayButton" type="Button" parent="V/Buttons"]
+margin_right = 168.0
+margin_bottom = 26.0
+rect_pivot_offset = Vector2( 84, 13 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="V/Buttons/PlayButton"]
+anims/Scale = SubResource( 4 )
+
+[node name="OptionsButton" type="Button" parent="V/Buttons"]
+margin_top = 28.0
+margin_right = 168.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( 84, 13 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/focus = ExtResource( 2 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
+text = "Options"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="V/Buttons/OptionsButton"]
+anims/Scale = SubResource( 5 )
+
+[node name="Links" type="VBoxContainer" parent="."]
+margin_left = 9.0
+margin_top = 9.0
+margin_right = 69.0
+margin_bottom = 49.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Links"]
+margin_right = 60.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+text = "Links:"
+align = 1
+
+[node name="MusicTrack" type="LinkButton" parent="Links"]
+margin_top = 24.0
+margin_right = 60.0
+margin_bottom = 37.0
+custom_fonts/font = SubResource( 6 )
+action_mode = 0
+text = "Music Track"
+underline = 1
+
+[node name="Kenney" type="LinkButton" parent="Links"]
+margin_top = 41.0
+margin_right = 60.0
+margin_bottom = 54.0
+focus_mode = 2
+custom_fonts/font = SubResource( 6 )
+action_mode = 0
+text = "Kenney.nl"
+underline = 1
+
+[connection signal="pressed" from="V/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="V/Buttons/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="Links/MusicTrack" to="." method="_on_MusicTrack_pressed"]
+[connection signal="pressed" from="Links/Kenney" to="." method="_on_Kenney_pressed"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lowRandom.ogg-885884338199f7c8384a6f74c2b36a6b.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/lowRandom.ogg"
+dest_files=[ "res://.import/lowRandom.ogg-885884338199f7c8384a6f74c2b36a6b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

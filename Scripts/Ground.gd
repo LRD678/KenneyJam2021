@@ -9,8 +9,6 @@ onready var building_check = $BuildingCheck
 onready var game_scene = get_parent().get_parent().get_parent()
 
 var color
-var inc_score = false
-var dec_score = false
 
 func _process(delta):
 	match color:
@@ -29,7 +27,3 @@ func handle_score():
 		if collision.is_in_group("Building"):
 			if collision.color == self.color:
 				game_scene.score += 1
-				dec_score = true
-			elif collision.color != self.color:
-				game_scene.score -= 1
-				inc_score = true

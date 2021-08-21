@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lowThreeTone.ogg-76bd7c63ff049f5da3f1d8e4cf75031a.oggstr"
+
+[deps]
+
+source_file="res://Assets/SFX/lowThreeTone.ogg"
+dest_files=[ "res://.import/lowThreeTone.ogg-76bd7c63ff049f5da3f1d8e4cf75031a.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

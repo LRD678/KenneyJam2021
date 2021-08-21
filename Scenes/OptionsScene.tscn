@@ -1,0 +1,217 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scripts/OptionsScene.gd" type="Script" id=1]
+[ext_resource path="res://Assets/background.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Slider.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SliderBar.png" type="Texture" id=4]
+[ext_resource path="res://Resources/Font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/SFX/phaseJump5.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/464_192.png" type="Texture" id=7]
+[ext_resource path="res://Resources/Pressed.tres" type="StyleBox" id=8]
+[ext_resource path="res://Resources/Hover.tres" type="StyleBox" id=9]
+[ext_resource path="res://Resources/Normal.tres" type="StyleBox" id=10]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.154362, 0.33557, 0.503356, 0.684564, 0.838926 )
+colors = PoolColorArray( 1, 0, 0, 1, 1, 0.632813, 0, 1, 0.289063, 1, 0, 1, 0, 0.267761, 0.835938, 1, 0.835938, 0, 0.822876, 1, 1, 0, 0, 1 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Rotate"
+length = 4.0
+loop = true
+step = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -5.0, 5.0 ]
+}
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 16, 16 )
+margin_left = 3.0
+margin_right = 3.0
+margin_top = 7.0
+margin_bottom = 7.0
+
+[node name="OptionsScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 168, 96 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundParticles" type="CPUParticles2D" parent="."]
+position = Vector2( 160, 96 )
+emitting = false
+amount = 64
+lifetime = 4.0
+texture = ExtResource( 7 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+angular_velocity = 250.0
+scale_amount = 0.3
+scale_amount_random = 0.4
+color_ramp = SubResource( 1 )
+
+[node name="PhaseJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "SFX"
+
+[node name="V" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -90.0
+margin_top = -72.0
+margin_right = 90.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 180, 114 )
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="V"]
+margin_right = 180.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 90, 10 )
+custom_fonts/font = ExtResource( 5 )
+text = "Options"
+align = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="V/Title"]
+autoplay = "Rotate"
+anims/Rotate = SubResource( 2 )
+
+[node name="SoundSliders" type="GridContainer" parent="V"]
+margin_top = 35.0
+margin_right = 180.0
+margin_bottom = 103.0
+columns = 2
+
+[node name="SFXLabel" type="Label" parent="V/SoundSliders"]
+margin_right = 64.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 5 )
+text = "SFX:"
+
+[node name="SFXVolume" type="HSlider" parent="V/SoundSliders"]
+margin_left = 68.0
+margin_right = 180.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+custom_icons/tick = ExtResource( 3 )
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
+custom_styles/slider = SubResource( 3 )
+custom_styles/grabber_area_highlight = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 3 )
+max_value = 1.0
+step = 0.05
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicLabel" type="Label" parent="V/SoundSliders"]
+margin_top = 24.0
+margin_right = 64.0
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 5 )
+text = "Music:"
+
+[node name="MusicVolume" type="HSlider" parent="V/SoundSliders"]
+margin_left = 68.0
+margin_top = 24.0
+margin_right = 180.0
+margin_bottom = 40.0
+custom_icons/tick = ExtResource( 3 )
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
+custom_styles/slider = SubResource( 3 )
+custom_styles/grabber_area_highlight = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 3 )
+max_value = 1.0
+step = 0.05
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MasterLabel" type="Label" parent="V/SoundSliders"]
+margin_top = 48.0
+margin_right = 64.0
+margin_bottom = 68.0
+custom_fonts/font = ExtResource( 5 )
+text = "Master:"
+
+[node name="MasterVolume" type="HSlider" parent="V/SoundSliders"]
+margin_left = 68.0
+margin_top = 48.0
+margin_right = 180.0
+margin_bottom = 64.0
+custom_icons/tick = ExtResource( 3 )
+custom_icons/grabber_disabled = ExtResource( 3 )
+custom_icons/grabber_highlight = ExtResource( 3 )
+custom_icons/grabber = ExtResource( 3 )
+custom_styles/slider = SubResource( 3 )
+custom_styles/grabber_area_highlight = SubResource( 3 )
+custom_styles/grabber_area = SubResource( 3 )
+max_value = 1.0
+step = 0.05
+value = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="H" type="HBoxContainer" parent="V"]
+margin_top = 118.0
+margin_right = 180.0
+margin_bottom = 144.0
+
+[node name="Margin" type="Label" parent="V/H"]
+margin_top = 6.0
+margin_right = 47.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="TitleButton" type="Button" parent="V/H"]
+margin_left = 51.0
+margin_right = 129.0
+margin_bottom = 26.0
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 8 )
+custom_styles/focus = ExtResource( 10 )
+custom_styles/disabled = ExtResource( 10 )
+custom_styles/normal = ExtResource( 10 )
+custom_fonts/font = ExtResource( 5 )
+text = "    Back    "
+
+[node name="Margin2" type="Label" parent="V/H"]
+margin_left = 133.0
+margin_top = 6.0
+margin_right = 180.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[connection signal="value_changed" from="V/SoundSliders/SFXVolume" to="." method="_on_SFXVolume_value_changed"]
+[connection signal="value_changed" from="V/SoundSliders/MusicVolume" to="." method="_on_MusicVolume_value_changed"]
+[connection signal="value_changed" from="V/SoundSliders/MasterVolume" to="." method="_on_MasterVolume_value_changed"]
+[connection signal="pressed" from="V/H/TitleButton" to="." method="_on_TitleButton_pressed"]

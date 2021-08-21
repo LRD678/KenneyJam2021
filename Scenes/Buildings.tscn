@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Building.tscn" type="PackedScene" id=2]
+
+[node name="Buildings" type="Node2D"]
+
+[node name="Group1" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group1" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group1" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group2" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = 0.785398
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group2" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group2" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group3" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = 1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group3" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group3" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group4" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = 2.35619
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group4" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group4" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group5" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = -3.14159
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group5" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group5" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group6" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = -2.35619
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group6" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group6" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group7" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = -1.5708
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group7" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group7" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
+
+[node name="Group8" type="Node2D" parent="."]
+position = Vector2( 160, 96 )
+rotation = -0.785398
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Building" parent="Group8" instance=ExtResource( 2 )]
+position = Vector2( 8, -48 )
+
+[node name="Building2" parent="Group8" instance=ExtResource( 2 )]
+position = Vector2( -8, -48 )
