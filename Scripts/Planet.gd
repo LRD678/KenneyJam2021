@@ -3,7 +3,6 @@ extends StaticBody2D
 signal rotated
 
 func _ready():
-	emit_signal("rotated")
 	get_parent().turns += 1
 
 func _process(delta):

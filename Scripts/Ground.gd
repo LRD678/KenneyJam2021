@@ -28,8 +28,8 @@ func handle_score():
 		var collision = building_check.get_collider()
 		if collision.is_in_group("Building"):
 			if collision.color == self.color:
-				game_scene.score -= 1
+				game_scene.score += 1
 				dec_score = true
 			elif collision.color != self.color:
-				game_scene.score += 1
+				game_scene.score -= 1
 				inc_score = true
